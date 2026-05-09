@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Mother's Day ❤️</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for elegant typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- GSAP for Smooth Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Canvas Confetti for interactions -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body>
+    <!-- Background Sparkles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- 1. Grand Opening Scene -->
+    <section id="intro" class="section intro-section">
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+        <div class="curtain-top-valance"></div>
+        <div class="intro-content hidden">
+            <h1 class="glowing-text">Happy Mother's Day ❤️</h1>
+            <p class="subtitle">A little surprise made with love...</p>
+            <button id="start-btn" class="elegant-btn">Begin the Journey</button>
+        </div>
+    </section>
+
+    <!-- Main content container (hidden until curtains open) -->
+    <div id="main-content" style="display: none;">
+
+        <!-- 2. Memory Photo Story Section -->
+        <section id="memories" class="section memory-section">
+            <h2 class="section-title">Precious Memories</h2>
+            <div class="timeline">
+                <!-- Memory 1 -->
+                <div class="memory-card">
+                    <div class="photo-placeholder">
+                        <img src="images/1.JPG" alt="Mom Photo 1">
+                    </div>
+                    <p class="caption">Our favorite smile ❤️</p>
+                </div>
+                <!-- Memory 2 -->
+                <div class="memory-card">
+                    <div class="photo-placeholder">
+                        <img src="images/2.JPG" alt="Mom Photo 2">
+                    </div>
+                    <p class="caption">A moment we’ll always cherish</p>
+                </div>
+                <!-- Memory 3 -->
+                <div class="memory-card">
+                    <div class="photo-placeholder">
+                        <img src="images/3.JPG" alt="Mom Photo 3">
+                    </div>
+                    <p class="caption">Home is wherever you are</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Interactive Balloon Surprise Game -->
+        <section id="balloons" class="section balloon-section">
+            <h2 class="balloon-names">Love you always mumma ❤️</h2>
+            <p class="balloon-progress"><span id="popped-count">0</span> / 6 balloons popped</p>
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <div id="balloon-container" class="balloon-container"></div>
+
+            <p class="tap-hint-bottom">Tap the floating balloons to pop them ❤️</p>
+
+            <!-- Modal for Balloon Message -->
+            <div id="message-modal" class="modal">
+                <div class="modal-content balloon-card">
+                    <span class="close-btn">&times;</span>
+                    <div class="modal-inner">
+                        <h3 id="balloon-title" class="balloon-card-title"></h3>
+                        <div class="balloon-img-wrapper">
+                            <img id="balloon-img" class="balloon-card-img" src="" alt="Memory">
+                        </div>
+                        <p id="balloon-message" class="balloon-card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Emotional Long Letter Section -->
+        <section id="letter" class="section letter-section">
+            <div class="letter-paper">
+                <h2 class="letter-greeting">Dearest Mummaaa,</h2>
+                <div class="letter-body">
+                    <p class="reveal-text">Happiest mother's day mumma ji you are the cutest and we are very lucky to
+                        have you in our life.</p>
+                    <p class="reveal-text">you are the strongest person we know and we look up to you and want to be
+                        like you in this life.</p>
+                    <p class="reveal-text">You taught us kindness, strength, and grace. We admire you more than words
+                        could ever express.</p>
+                    <p class="reveal-text">Mumma thankyou for always being there and also hume pta h ki aap humare bhale
+                        ke liye hi hume daant te ho and we promise you that we'll never let you down .</p>
+                </div>
+                <h3 class="letter-closing">With all our love,</h3>
+            </div>
+        </section>
+
+        <!-- 5. Interactive Cake Celebration -->
+        <section id="cake-section" class="section cake-section">
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="tier tier-top"></div>
+                    <div class="tier tier-middle"></div>
+                    <div class="tier tier-bottom"></div>
+                    <div class="candle">
+                        <div class="flame" id="flame"></div>
+                        <div class="smoke" id="smoke"></div>
+                    </div>
+                </div>
+            </div>
+            <button id="blow-candle-btn" class="elegant-btn">Blow out the candle</button>
+            <h2 id="cake-message" class="hidden glow-message">Make a wish, Mom ❤️</h2>
+        </section>
+
+        <!-- 6. Coupon Reward Reveal -->
+        <section id="coupons" class="section coupon-section">
+            <h2 class="section-title">A Little Extra Love</h2>
+            <div class="coupon-container">
+                <!-- Coupon 1 -->
+                <div class="coupon-card">
+                    <div class="coupon-inner">
+                        <div class="coupon-front">
+                            <h3>Coupon 1</h3>
+                            <div class="icon">💆‍♀️</div>
+                            <p class="tap-hint">Tap to flip</p>
+                        </div>
+                        <div class="coupon-back">
+                            <h4>Head Massage</h4>
+                            <p>Redeem anytime for a relaxing daughter-delivered head massage.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Coupon 2 -->
+                <div class="coupon-card">
+                    <div class="coupon-inner">
+                        <div class="coupon-front">
+                            <h3>Coupon 2</h3>
+                            <div class="icon">🍽️</div>
+                            <p class="tap-hint">Tap to flip</p>
+                        </div>
+                        <div class="coupon-back">
+                            <h4>Kitchen Holiday</h4>
+                            <p>One complete meal off from kitchen duty.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Coupon 3 -->
+                <div class="coupon-card">
+                    <div class="coupon-inner">
+                        <div class="coupon-front">
+                            <h3>Coupon 3</h3>
+                            <div class="icon">🎁</div>
+                            <p class="tap-hint">Tap to flip</p>
+                        </div>
+                        <div class="coupon-back">
+                            <h4>Anything You Want</h4>
+                            <p>One wish granted with love.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Final Signature Ending -->
+        <section id="ending" class="section ending-section">
+            <div class="ending-content">
+                <h2 class="ending-text">From your loving daughters❤️</h2>
+                <h1 class="signature">Vanshika & Sahaj</h1>
+                <button id="replay-btn" class="elegant-btn outline">Replay Surprise</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Main Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

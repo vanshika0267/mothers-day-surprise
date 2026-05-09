@@ -1,0 +1,767 @@
+/* === Design Tokens & Colors === */
+:root {
+    --pink-light: #fdf3f4;
+    --pink-medium: #fbc4cb;
+    --cream: #fffdf9;
+    --gold: #d4af37;
+    --gold-dark: #b5952f;
+    --text-dark: #4a3b3c;
+    --text-light: #8a7375;
+    --accent: #e84362;
+}
+
+/* === Reset & Base Styles === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--pink-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* === Global Elements === */
+h1, h2, h3, h4 {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+}
+
+.section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    color: var(--gold);
+    margin-bottom: 3rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.05);
+}
+
+.glowing-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.4), 0 0 20px rgba(212, 175, 55, 0.2);
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Background Particles */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Buttons */
+.elegant-btn {
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    background: linear-gradient(45deg, var(--gold-dark), var(--gold));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.elegant-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(212, 175, 55, 0.4);
+}
+
+.elegant-btn.outline {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+}
+
+.elegant-btn.outline:hover {
+    background: var(--gold);
+    color: white;
+}
+
+/* === 1. Grand Opening Scene === */
+.intro-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: var(--cream);
+    overflow: hidden;
+    display: flex;
+    padding: 0;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background: 
+        repeating-linear-gradient(to right, 
+            rgba(0,0,0,0.6) 0%, 
+            rgba(0,0,0,0) 8%, 
+            rgba(0,0,0,0) 12%, 
+            rgba(0,0,0,0.6) 20%
+        ),
+        linear-gradient(to right, #9c152a, #e62e51, #9c152a);
+    box-shadow: inset 0 -20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.8);
+    z-index: 101;
+    transition: transform 2.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.curtain::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, #e3c059, #b5952f);
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
+}
+
+.curtain-top-valance {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 12vh;
+    min-height: 80px;
+    background: 
+        repeating-linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 4%, rgba(0,0,0,0) 6%, rgba(0,0,0,0.6) 10%),
+        linear-gradient(to bottom, #540611, #c4233f);
+    z-index: 105; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8);
+    pointer-events: none;
+    border-bottom: 5px solid #e3c059;
+}
+
+.curtain-top-valance::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: radial-gradient(circle at 50% 0, #e3c059 0%, #b5952f 50%, transparent 55%);
+    background-size: 30px 15px;
+    background-repeat: repeat-x;
+}
+
+.curtain-left {
+    left: 0;
+    transform-origin: left top;
+}
+
+.curtain-right {
+    right: 0;
+    transform-origin: right top;
+}
+
+.curtain.open-left {
+    transform: scaleX(0);
+}
+
+.curtain.open-right {
+    transform: scaleX(0);
+}
+
+.intro-content {
+    position: relative;
+    z-index: 110;
+    text-align: center;
+    transition: opacity 1.5s ease 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.intro-content.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* === 2. Memory Photo Story Section === */
+.memory-section {
+    background: linear-gradient(to bottom, var(--cream), var(--pink-light));
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.memory-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0; /* Handled by GSAP */
+    transform: translateY(50px);
+}
+
+.photo-placeholder {
+    width: 100%;
+    max-width: 500px;
+    height: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 12px solid white;
+    position: relative;
+    background: var(--pink-medium);
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 120%; /* Taller for parallax */
+    object-fit: cover;
+    transform: translateY(-10%); /* Start offset for parallax */
+}
+
+.caption {
+    margin-top: 1.5rem;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: var(--text-dark);
+}
+
+/* === 3. Interactive Balloon Game === */
+.balloon-section {
+    background-color: var(--pink-light);
+    overflow: hidden;
+}
+
+.balloon-container {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    max-width: 1000px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -120px;
+    width: 70px;
+    height: 90px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+    animation: floatUp 12s linear infinite;
+    transition: transform 0.2s;
+}
+
+.balloon:hover {
+    transform: scale(1.05);
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    width: 1px;
+    height: 50px;
+    background: rgba(0,0,0,0.2);
+}
+
+/* Balloon Colors */
+.balloon-color-1 { background: radial-gradient(circle at 30% 30%, #fff, #ffb6c1); }
+.balloon-color-1::before { border-bottom-color: #ffb6c1; }
+
+.balloon-color-2 { background: radial-gradient(circle at 30% 30%, #fff, #add8e6); }
+.balloon-color-2::before { border-bottom-color: #add8e6; }
+
+.balloon-color-3 { background: radial-gradient(circle at 30% 30%, #fff, #ffffe0); }
+.balloon-color-3::before { border-bottom-color: #ffffe0; }
+
+.balloon-color-4 { background: radial-gradient(circle at 30% 30%, #fff, #e6e6fa); }
+.balloon-color-4::before { border-bottom-color: #e6e6fa; }
+
+.balloon-color-5 { background: radial-gradient(circle at 30% 30%, #fff, #ffdac1); }
+.balloon-color-5::before { border-bottom-color: #ffdac1; }
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-40vh) rotate(5deg); }
+    100% { transform: translateY(-80vh) rotate(-5deg); }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 4rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    border: 2px solid var(--gold);
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="2" fill="%23fdf3f4"/></svg>');
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.3s;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    color: var(--accent);
+}
+
+.balloon-names {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.balloon-progress {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.progress-bar-container {
+    width: 250px;
+    height: 8px;
+    background: rgba(232, 67, 98, 0.2);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #e84362;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.tap-hint-bottom {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-top: 2rem;
+}
+
+/* Updated modal to look like the screenshot card */
+.balloon-card {
+    background: #fdfdfd;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: none;
+    background-image: none;
+}
+
+.balloon-card-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #b04359;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.balloon-img-wrapper {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border: 5px solid #4a3b3c;
+}
+
+.balloon-card-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.balloon-card-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* === 4. Emotional Letter Section === */
+.letter-section {
+    background: var(--cream);
+}
+
+.letter-paper {
+    background: white;
+    max-width: 800px;
+    width: 100%;
+    padding: 5rem 4rem;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    background-image: 
+        linear-gradient(90deg, transparent 40px, #e8d0d3 40px, #e8d0d3 42px, transparent 42px),
+        linear-gradient(#f4eaea .1em, transparent .1em);
+    background-size: 100% 2rem;
+    line-height: 2rem;
+    position: relative;
+}
+
+.letter-greeting {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    text-align: left;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+}
+
+.letter-body p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-dark);
+    opacity: 0; /* Handled by GSAP */
+    transform: translateY(20px);
+}
+
+.letter-closing {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    text-align: right;
+    margin-top: 4rem;
+    color: var(--text-dark);
+}
+
+/* === 5. Interactive Cake === */
+.cake-section {
+    background: linear-gradient(to bottom, var(--pink-light), var(--cream));
+}
+
+.cake-container {
+    position: relative;
+    height: 350px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+}
+
+.cake {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tier {
+    background: #fff;
+    border-radius: 12px 12px 0 0;
+    box-shadow: inset 0 -5px 15px rgba(0,0,0,0.1), 0 8px 15px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.tier::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    background: var(--pink-medium);
+    border-radius: 12px 12px 0 0;
+}
+
+.tier::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: radial-gradient(circle, var(--pink-medium) 50%, transparent 50%);
+    background-size: 20px 20px;
+    background-repeat: repeat-x;
+}
+
+.tier-bottom { width: 280px; height: 90px; }
+.tier-middle { width: 200px; height: 80px; }
+.tier-top { width: 130px; height: 70px; }
+
+.candle {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 45px;
+    background: repeating-linear-gradient(45deg, white, white 5px, var(--accent) 5px, var(--accent) 10px);
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.flame {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 30px;
+    background: radial-gradient(ellipse at bottom, #ffcc00 20%, #ff6600 80%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 0.6s infinite alternate;
+    box-shadow: 0 0 25px #ffcc00;
+}
+
+.flame.extinguished {
+    display: none;
+}
+
+.smoke {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: rgba(150, 150, 150, 0);
+    border-radius: 50%;
+}
+
+.smoke.active {
+    animation: smokeRise 2.5s forwards;
+}
+
+@keyframes flicker {
+    0% { transform: translateX(-50%) scale(1); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1.1) skewX(3deg); opacity: 0.9; }
+}
+
+@keyframes smokeRise {
+    0% { background: rgba(150, 150, 150, 0.8); transform: translateX(-50%) translateY(0) scale(1); }
+    100% { background: rgba(150, 150, 150, 0); transform: translateX(-50%) translateY(-60px) scale(4); }
+}
+
+.glow-message {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: var(--gold);
+    margin-top: 1rem;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    transition: opacity 1.5s ease;
+}
+
+/* === 6. Coupon Rewards === */
+.coupon-section {
+    background: var(--cream);
+}
+
+.coupon-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    max-width: 1200px;
+}
+
+.coupon-card {
+    width: 320px;
+    height: 220px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.coupon-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.coupon-card.flipped .coupon-inner {
+    transform: rotateY(180deg);
+}
+
+.coupon-front, .coupon-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.coupon-front {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: white;
+    border: 3px dashed rgba(255,255,255,0.4);
+    background-clip: padding-box;
+}
+
+.coupon-front h3 {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+.coupon-front .icon {
+    font-size: 4rem;
+    margin: 1rem 0;
+}
+
+.tap-hint {
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0.8;
+}
+
+.coupon-back {
+    background: white;
+    transform: rotateY(180deg);
+    border: 3px dashed var(--gold);
+    text-align: center;
+}
+
+.coupon-back h4 {
+    color: var(--gold-dark);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.coupon-back p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+/* === 7. Final Signature Ending === */
+.ending-section {
+    background: linear-gradient(to bottom, var(--cream), var(--pink-light));
+    text-align: center;
+    min-height: 80vh;
+}
+
+.ending-text {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 6rem;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(232, 67, 98, 0.3);
+    margin-bottom: 4rem;
+}
+
+/* === Responsive Design === */
+@media (max-width: 900px) {
+    .section { padding: 4rem 1.5rem; }
+    .glowing-text { font-size: 3.5rem; }
+    .section-title { font-size: 2.5rem; }
+    .photo-placeholder { height: 500px; }
+    .letter-paper { padding: 3rem 2rem; }
+    .signature { font-size: 4.5rem; }
+}
+
+@media (max-width: 600px) {
+    .glowing-text { font-size: 2.8rem; }
+    .section-title { font-size: 2rem; }
+    .photo-placeholder { height: 400px; }
+    .caption { font-size: 2rem; }
+    .letter-paper { padding: 2rem 1.5rem; background-size: 100% 1.5rem; line-height: 1.5rem; }
+    .letter-greeting { font-size: 2.2rem; }
+    .letter-closing { font-size: 2rem; }
+    .signature { font-size: 3.5rem; }
+    .coupon-card { width: 100%; max-width: 320px; }
+}

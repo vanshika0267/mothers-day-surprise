@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const balloonData = [
         {
             title: "Happyy mother's dayy mummaaa 😘😘😘",
-            img: "images/11.jpg",
+            img: "images/11.JPG",
             msg: "Happy Mother's Day Mumma ❤️ Aap meri life ka sabse safe aur beautiful part ho. Har situation mein aapne mujhe itna support kiya hai ki words kabhi enough nahi lagenge. Thank you for loving me unconditionally and always standing by my side. Love you the most 🌸"
         },
         {
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "The Best Cook 👩‍🍳",
-            img: "images/33.jpg",
+            img: "images/33.JPG",
             msg: "Nothing in this world can beat the taste of your food. It’s made with pure love. Thank you for always making sure my tummy and heart are full! 🍲❤️"
         },
         {
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "Always There For Me 🫂",
-            img: "images/55.jpg",
+            img: "images/55.JPG",
             msg: "Your hugs are my safest place in the whole wide world. When everything goes wrong, just one hug from you fixes everything. Love you mumma! 🥰"
         },
         {
